@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>အချစ်ဆုံးသူငယ်ချင်းလေးအတွက် 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;600;700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      min-height: 100dvh;
+      width: 100%;
+      background: linear-gradient(160deg, #16152b 0%, #271d47 48%, #3e2254 100%);
+      color: #fff;
+      font-family: 'Noto Sans Myanmar', 'Quicksand', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      padding: 18px;
+    }
+
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(75px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb-1 {
+      width: 240px;
+      height: 240px;
+      background: rgba(116, 185, 255, 0.24);
+      top: -45px;
+      left: -45px;
+    }
+    .orb-2 {
+      width: 260px;
+      height: 260px;
+      background: rgba(255, 118, 185, 0.22);
+      bottom: -50px;
+      right: -50px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 410px;
+      min-height: 580px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 28px;
+      padding: 24px 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex: 1;
+      justify-content: space-between;
+      animation: fadeSlide 0.35s ease;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .step-badge {
+      font-size: 12px;
+      letter-spacing: 0.4px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #dbeafe;
+      border: 1px solid rgba(186, 230, 253, 0.25);
+    }
+
+    .anime-box {
+      width: 195px;
+      height: 195px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px auto;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .anime-box svg,
+    .anime-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .title {
+      font-size: 20.5px;
+      font-weight: 700;
+      line-height: 1.45;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: #e9e4ff;
+      min-height: 52px;
+    }
+
+    .btn-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 18px;
+      position: relative;
+      min-height: 118px;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      min-height: 54px;
+    }
+
+    button {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-family: 'Noto Sans Myanmar', 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 16px;
+      padding: 13px 20px;
+      transition: transform 0.18s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    button:active {
+      transform: scale(0.96);
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(108, 92, 231, 0.4);
+    }
+
+    .btn-yes {
+      flex: 1;
+      background: linear-gradient(135deg, #4f86f7, #74b9ff);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(79, 134, 247, 0.4);
+    }
+
+    .btn-no {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.16);
+      color: #f3e8ff;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      position: relative;
+      z-index: 20;
+    }
+
+    .btn-no.runaway {
+      position: fixed !important;
+      flex: none;
+      width: auto;
+      min-width: 96px;
+      z-index: 999;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .dodge-hint {
+      font-size: 12px;
+      color: #c4b5fd;
+      min-height: 18px;
+      margin-top: 4px;
+    }
+
+    .progress-wrap {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 14px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #74b9ff, #ff76b9);
+      transition: width 0.35s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <div class="container">
+    <!-- INTRO SCREEN -->
+    <div id="introScreen" class="screen active">
+      <div class="step-badge">✨ Best Friend Special</div>
+
+      <div class="anime-box">
+        <!-- Anime Boy SVG -->
+        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="boyHair" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#1e2749"/>
+              <stop offset="100%" stop-color="#0f1429"/>
+            </linearGradient>
+            <linearGradient id="boySkin" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ffe9de"/>
+              <stop offset="100%" stop-color="#f6cbb7"/>
+            </linearGradient>
+          </defs>
+          <!-- Back hair -->
+          <path d="M54 96 Q56 32 110 32 Q164 32 166 96 L172 152 Q142 142 110 150 Q78 142 48 152 Z" fill="url(#boyHair)"/>
+          <!-- Hoodie / Jacket -->
+          <path d="M52 215 Q58 168 110 166 Q162 168 168 215 Z" fill="#3b82f6"/>
+          <path d="M84 167 L110 196 L136 167" fill="none" stroke="#dbeafe" stroke-width="4" stroke-linecap="round"/>
+          <!-- Neck & Face -->
+          <rect x="97" y="144" width="26" height="26" rx="10" fill="#f3c4b0"/>
+          <path d="M65 88 Q65 54 110 54 Q155 54 155 88 Q155 138 110 156 Q65 138 65 88 Z" fill="url(#boySkin)"/>
+          <!-- Eyebrows -->
+          <path d="M74 91 Q86 85 96 90" fill="none" stroke="#1e2749" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M146 91 Q134 85 124 90" fill="none" stroke="#1e2749" stroke-width="3.2" stroke-linecap="round"/>
+          <!-- Anime boy eyes -->
+          <ellipse cx="86" cy="105" rx="10.5" ry="12.5" fill="#1e2749"/>
+          <ellipse cx="134" cy="105" rx="10.5" ry="12.5" fill="#1e2749"/>
+          <circle cx="82" cy="100" r="4" fill="#fff"/>
+          <circle cx="130" cy="100" r="4" fill="#fff"/>
+          <circle cx="89" cy="109" r="1.8" fill="#93c5fd"/>
+          <circle cx="137" cy="109" r="1.8" fill="#93c5fd"/>
+          <!-- Soft blush -->
+          <ellipse cx="75" cy="119" rx="8" ry="4" fill="#fb7185" opacity="0.38"/>
+          <ellipse cx="145" cy="119" rx="8" ry="4" fill="#fb7185" opacity="0.38"/>
+          <!-- Friendly smile -->
+          <path d="M100 131 Q110 140 120 131" fill="none" stroke="#b45369" stroke-width="3" stroke-linecap="round"/>
+          <!-- Messy anime boy bangs -->
+          <path d="M64 90 Q70 50 110 48 Q150 50 156 90 Q144 70 135 93 Q125 65 113 94 Q100 66 88 92 Q76 70 64 90 Z" fill="url(#boyHair)"/>
+        </svg>
+      </div>
+
+      <div>
+        <h1 class="title">ဟေး... အချစ်ဆုံးသူငယ်ချင်းလေး 👋</h1>
+        <p class="subtitle">
+          မင်းအတွက် သီးသန့်လုပ်ထားတဲ့ Page လေးပါ။ စိတ်မဆိုးဘဲ ခဏလောက် ဖွင့်ကြည့်ပေးပါဦးနော်!
+        </p>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn-primary" onclick="startStory()">ဖွင့်ကြည့်မယ် ✨</button>
+      </div>
+    </div>
+
+    <!-- 6 HOME PAGES SCREEN -->
+    <div id="storyScreen" class="screen">
+      <div style="width:100%;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="step-badge" id="pageIndicator">Home 1 / 6</span>
+          <span style="font-size:12px; color:#e9e4ff;" id="moodTag">Anime Boy 😊</span>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+
+      <div class="anime-box" id="storyAnimeBox"></div>
+
+      <div>
+        <h2 class="title" id="storyTitle"></h2>
+        <p class="subtitle" id="storyDesc"></p>
+      </div>
+
+      <div class="btn-group">
+        <div class="btn-row">
+          <button class="btn-yes" id="yesBtn" onclick="handleYes()">Yes 💙</button>
+          <button class="btn-no" id="noBtn">No 🙈</button>
+        </div>
+        <div class="dodge-hint" id="dodgeHint">No ခလုတ်ကို နှိပ်ကြည့်လေ... 😜</div>
+      </div>
+    </div>
+
+    <!-- FINAL SCREEN -->
+    <div id="endScreen" class="screen">
+      <div class="step-badge">🎉 ပြီးသွားပြီနော်!</div>
+
+      <div class="anime-box">
+        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <path d="M54 96 Q56 32 110 32 Q164 32 166 96 L172 152 Q142 142 110 150 Q78 142 48 152 Z" fill="#1e2749"/>
+          <path d="M52 215 Q58 168 110 166 Q162 168 168 215 Z" fill="#6366f1"/>
+          <rect x="97" y="144" width="26" height="26" rx="10" fill="#f3c4b0"/>
+          <path d="M65 88 Q65 54 110 54 Q155 54 155 88 Q155 138 110 156 Q65 138 65 88 Z" fill="#ffe9de"/>
+          <!-- Happy eyes -->
+          <path d="M75 104 Q86 94 97 104" fill="none" stroke="#1e2749" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M123 104 Q134 94 145 104" fill="none" stroke="#1e2749" stroke-width="3.5" stroke-linecap="round"/>
+          <ellipse cx="75" cy="118" rx="8.5" ry="4.5" fill="#fb7185" opacity="0.45"/>
+          <ellipse cx="145" cy="118" rx="8.5" ry="4.5" fill="#fb7185" opacity="0.45"/>
+          <path d="M97 128 Q110 141 123 128 Z" fill="#f43f5e"/>
+          <path d="M64 90 Q70 50 110 48 Q150 50 156 90 Q144 70 135 93 Q125 65 113 94 Q100 66 88 92 Q76 70 64 90 Z" fill="#1e2749"/>
+          <path d="M168 46 C168 37 181 37 181 46 C181 55 168 63 168 63 C168 63 155 55 155 46 C155 37 168 37 168 46 Z" fill="#ff76b9"/>
+        </svg>
+      </div>
+
+      <div>
+        <h2 class="title">အချစ်ဆုံးသူငယ်ချင်းလေးကို အမြဲခင်တယ်နော် 😊</h2>
+        <p class="subtitle">
+          ဘာပဲဖြစ်ဖြစ် အမြဲအတူရှိပြီး ပျော်ရွှင်နေကြရအောင်။ ပြုံးလိုက်တော့နော်! ✨
+        </p>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn-primary" onclick="restartAll()">ပြန်ကြည့်မယ် 🔄</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const pages = [
+      {
+        tag: "Home 1 · ခင်မင်မှု 🥺",
+        title: "Home 1: မင်းက ငါ့ရဲ့ အချစ်ဆုံးသူငယ်ချင်းပဲ",
+        desc: "တခြားသူတွေ ဘယ်လိုပဲပြောပြော မင်းက ငါ့အတွက် အရေးအကြီးဆုံး သူငယ်ချင်းလေးပါ။ ဟုတ်တယ်မလား?",
+        yesText: "Yes, ဟုတ်ပါတယ် 💙",
+        noText: "No, မဟုတ်ဘူး 😜",
+        mood: "friendly"
+      },
+      {
+        tag: "Home 2 · စိတ်ကောက်ရင် 😢",
+        title: "Home 2: စိတ်ကောက်နေရင် ငါ စိတ်မကောင်းဘူး",
+        desc: "မင်း မျက်နှာတည်နေရင် ငါလည်း နေလို့မကောင်းဘူးကွာ။ စိတ်မဆိုးတော့ဘူးမလား?",
+        yesText: "Yes, စိတ်မဆိုးတော့ဘူး 😊",
+        noText: "No, စိတ်ဆိုးသေးတယ် 😤",
+        mood: "sad"
+      },
+      {
+        tag: "Home 3 · မုန့်ကျွေးမယ် 😋",
+        title: "Home 3: မုန့်ဝယ်ကျွေးရင် ပြီးရောလား?",
+        desc: "မင်းကြိုက်တဲ့ မုန့် ဒါမှမဟုတ် အအေး တစ်ခုခု ဝယ်ကျွေးမယ်လေ။ အဆင်ပြေသွားပြီလား?",
+        yesText: "Yes, မုန့်ကျွေးရင် OK 😋",
+        noText: "No, မရသေးဘူး 🙈",
+        mood: "smile"
+      },
+      {
+        tag: "Home 4 · အမှတ်တရတွေ 🌟",
+        title: "Home 4: အတူရယ်ခဲ့ရတဲ့ အချိန်တွေ",
+        desc: "ငါတို့ အတူတူ ပြောခဲ့၊ ရယ်ခဲ့ရတဲ့ အမှတ်တရတွေ အများကြီး ရှိတယ်နော်။ မေ့တော့မသွားဘူးမလား?",
+        yesText: "Yes, မမေ့ပါဘူး ✨",
+        noText: "No, မေ့သွားပြီ 😝",
+        mood: "friendly"
+      },
+      {
+        tag: "Home 5 · အားပေးမှု 💪",
+        title: "Home 5: ဘယ်ချိန်ပဲဖြစ်ဖြစ် ဘေးမှာရှိမယ်",
+        desc: "မင်း ပင်ပန်းတဲ့အခါ၊ စိတ်ညစ်တဲ့အခါ ငါ အမြဲ နားထောင်ပေးဖို့ ရှိနေမှာပါ။ ယုံတယ်မလား?",
+        yesText: "Yes, ယုံပါတယ် 🤝",
+        noText: "No, စဉ်းစားဦးမယ် 🤔",
+        mood: "smile"
+      },
+      {
+        tag: "Home 6 · နောက်ဆုံးအဆင့် 💕",
+        title: "Home 6: အမြဲတမ်း အချစ်ဆုံးသူငယ်ချင်း ဖြစ်မယ်နော်",
+        desc: "အကုန်လုံး ဖြေပြီးသွားပြီဆိုတော့ အမြဲခင်မင်နေကြမယ် မဟုတ်လား?",
+        yesText: "Yes! အမြဲခင်မယ် 💖",
+        noText: "No! ဝေးဝေးနေမယ် 🏃‍♂️",
+        mood: "love"
+      }
+    ];
+
+    const dodgeMessages = [
+      "ဟာ... No ခလုတ်က ပြေးသွားပြီ 🏃‍♂️💨",
+      "အဲဒီ No ကို နှိပ်လို့မရဘူးလေ 😜",
+      "Yes ကိုပဲ နှိပ်လိုက်ပါတော့ သူငယ်ချင်းရယ် 😊",
+      "ပြေးပြန်ပြီ! ဖမ်းလို့မမိဘူးနော် 🙈",
+      "No ခလုတ်က ထွက်ပြေးနေပြီ... Yes နှိပ်လိုက်တော့ 💙"
+    ];
+
+    let currentIndex = 0;
+    let dodgeCount = 0;
+
+    const introScreen = document.getElementById("introScreen");
+    const storyScreen = document.getElementById("storyScreen");
+    const endScreen = document.getElementById("endScreen");
+    const pageIndicator = document.getElementById("pageIndicator");
+    const moodTag = document.getElementById("moodTag");
+    const progressBar = document.getElementById("progressBar");
+    const storyAnimeBox = document.getElementById("storyAnimeBox");
+    const storyTitle = document.getElementById("storyTitle");
+    const storyDesc = document.getElementById("storyDesc");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const dodgeHint = document.getElementById("dodgeHint");
+
+    function renderAnimeBoySvg(mood) {
+      const tear = (mood === "sad")
+        ? `<path d="M72 116 Q69 127 74 131 Q79 127 76 116 Z" fill="#60a5fa"/>`
+        : "";
+
+      const mouth = (mood === "sad")
+        ? `<path d="M101 135 Q110 128 119 135" fill="none" stroke="#b45369" stroke-width="3" stroke-linecap="round"/>`
+        : (mood === "love")
+          ? `<path d="M98 129 Q110 141 122 129 Z" fill="#fb7185"/>`
+          : `<path d="M100 131 Q110 140 120 131" fill="none" stroke="#b45369" stroke-width="3" stroke-linecap="round"/>`;
+
+      return `
+        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <path d="M54 96 Q56 32 110 32 Q164 32 166 96 L172 152 Q142 142 110 150 Q78 142 48 152 Z" fill="#1e2749"/>
+          <path d="M52 215 Q58 168 110 166 Q162 168 168 215 Z" fill="#3b82f6"/>
+          <rect x="97" y="144" width="26" height="26" rx="10" fill="#f3c4b0"/>
+          <path d="M65 88 Q65 54 110 54 Q155 54 155 88 Q155 138 110 156 Q65 138 65 88 Z" fill="#ffe9de"/>
+          <path d="M74 91 Q86 85 96 90" fill="none" stroke="#1e2749" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M146 91 Q134 85 124 90" fill="none" stroke="#1e2749" stroke-width="3.2" stroke-linecap="round"/>
+          <ellipse cx="86" cy="105" rx="10.5" ry="12.5" fill="#1e2749"/>
+          <ellipse cx="134" cy="105" rx="10.5" ry="12.5" fill="#1e2749"/>
+          <circle cx="82" cy="100" r="4" fill="#fff"/>
+          <circle cx="130" cy="100" r="4" fill="#fff"/>
+          ${tear}
+          <ellipse cx="75" cy="119" rx="8" ry="4" fill="#fb7185" opacity="0.4"/>
+          <ellipse cx="145" cy="119" rx="8" ry="4" fill="#fb7185" opacity="0.4"/>
+          ${mouth}
+          <path d="M64 90 Q70 50 110 48 Q150 50 156 90 Q144 70 135 93 Q125 65 113 94 Q100 66 88 92 Q76 70 64 90 Z" fill="#1e2749"/>
+        </svg>
+      `;
+    }
+
+    function resetNoButtonPosition() {
+      noBtn.classList.remove("runaway");
+      noBtn.style.left = "";
+      noBtn.style.top = "";
+    }
+
+    function loadPage(index) {
+      const p = pages[index];
+      pageIndicator.textContent = `Home ${index + 1} / ${pages.length}`;
+      moodTag.textContent = p.tag;
+      progressBar.style.width = `${((index + 1) / pages.length) * 100}%`;
+      storyAnimeBox.innerHTML = renderAnimeBoySvg(p.mood);
+      storyTitle.textContent = p.title;
+      storyDesc.textContent = p.desc;
+      yesBtn.textContent = p.yesText;
+      noBtn.textContent = p.noText;
+      dodgeHint.textContent = "No ခလုတ်ကို နှိပ်ကြည့်လေ... 😜";
+      resetNoButtonPosition();
+    }
+
+    function startStory() {
+      currentIndex = 0;
+      dodgeCount = 0;
+      introScreen.classList.remove("active");
+      endScreen.classList.remove("active");
+      storyScreen.classList.add("active");
+      loadPage(0);
+    }
+
+    function handleYes() {
+      if (currentIndex < pages.length - 1) {
+        currentIndex++;
+        loadPage(currentIndex);
+      } else {
+        resetNoButtonPosition();
+        storyScreen.classList.remove("active");
+        endScreen.classList.add("active");
+      }
+    }
+
+    function dodgeNoButton(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      noBtn.classList.add("runaway");
+
+      const btnRect = noBtn.getBoundingClientRect();
+      const btnW = btnRect.width || 110;
+      const btnH = btnRect.height || 48;
+      const pad = 16;
+
+      const maxX = Math.max(pad, window.innerWidth - btnW - pad);
+      const maxY = Math.max(pad, window.innerHeight - btnH - pad);
+
+      let randomX = pad + Math.random() * (maxX - pad);
+      let randomY = pad + Math.random() * (maxY - pad);
+
+      const yesRect = yesBtn.getBoundingClientRect();
+      if (
+        randomX < yesRect.right + 12 &&
+        randomX + btnW > yesRect.left - 12 &&
+        randomY < yesRect.bottom + 12 &&
+        randomY + btnH > yesRect.top - 12
+      ) {
+        randomY = randomY > window.innerHeight / 2 ? pad + 20 : maxY - 20;
+      }
+
+      noBtn.style.left = `${Math.round(randomX)}px`;
+      noBtn.style.top = `${Math.round(randomY)}px`;
+
+      dodgeHint.textContent = dodgeMessages[dodgeCount % dodgeMessages.length];
+      dodgeCount++;
+    }
+
+    noBtn.addEventListener("touchstart", dodgeNoButton, { passive: false });
+    noBtn.addEventListener("pointerenter", dodgeNoButton);
+    noBtn.addEventListener("click", dodgeNoButton);
+
+    function restartAll() {
+      resetNoButtonPosition();
+      endScreen.classList.remove("active");
+      introScreen.classList.add("active");
+    }
+  </script>
+</body>
+            </html>
+            
